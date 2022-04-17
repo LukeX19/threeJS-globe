@@ -13,6 +13,19 @@ console.log(renderer)
 renderer.setSize(innerWidth, innerHeight)
 document.body.appendChild(renderer.domElement)
 
+//create the sphere object
+const geometry = new THREE.SphereGeometry(5, 50, 50)
+const material = new THREE.MeshBasicMaterial({
+    color: 0xFF0000
+})
+const sphere = new THREE.Mesh(geometry, material)
+scene.add(sphere)
+/*in order to see the sphere, camera must be moved back
+otherwise, the camera will be placed inside the sphere
+to do this, z axis number has to be greater than geometry value*/
+camera.position.z = 10
+
+
 function animate()
 {
     requestAnimationFrame(animate)

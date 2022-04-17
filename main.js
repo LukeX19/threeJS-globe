@@ -9,5 +9,13 @@ console.log(scene)
 console.log(camera)
 console.log(renderer)
 
+//render the whole page
 renderer.setSize(innerWidth, innerHeight)
 document.body.appendChild(renderer.domElement)
+
+function animate()
+{
+    requestAnimationFrame(animate)
+    renderer.render(scene, camera)
+}
+animate()

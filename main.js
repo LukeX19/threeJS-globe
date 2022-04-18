@@ -1,5 +1,6 @@
 import * as THREE from 'https://unpkg.com/three@0.139.2/build/three.module.js';
 import vertexShader from './shaders/vertex.glsl'
+import fragmentShader from './shaders/fragment.glsl'
 
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 0.1, 1000)
@@ -24,8 +25,8 @@ const texture = new THREE.TextureLoader()
 const material = new THREE.ShaderMaterial({
     //color: 0xFF0000
     //map: texture.load('./images/Earth-hires.jpg')
-    vertexShader: vertexShader   //because property and value are equal, in js we can put only "vertexShader" instead of "vertexShader: vertexShader"
-    //fragmentShader:
+    vertexShader: vertexShader,   //because property and value are equal, in js we can put only "vertexShader" instead of "vertexShader: vertexShader"
+    fragmentShader: fragmentShader
 })
 const sphere = new THREE.Mesh(geometry, material)
 scene.add(sphere)

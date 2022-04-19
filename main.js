@@ -26,7 +26,12 @@ const material = new THREE.ShaderMaterial({
     //color: 0xFF0000
     //map: texture.load('./images/Earth-hires.jpg')
     vertexShader: vertexShader,   //because property and value are equal, in js we can put only "vertexShader" instead of "vertexShader: vertexShader"
-    fragmentShader: fragmentShader
+    fragmentShader: fragmentShader,
+    uniforms: {
+        globeTextureUniform: {
+            value: texture.load('./images/Earth-hires.jpg')
+        }
+    }
 })
 const sphere = new THREE.Mesh(geometry, material)
 scene.add(sphere)

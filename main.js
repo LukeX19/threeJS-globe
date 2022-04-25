@@ -61,5 +61,6 @@ function animate()
 {
     requestAnimationFrame(animate)
     renderer.render(scene, camera)
+    earthSphere.rotation.y = earthSphere.rotation.y + 0.001
 }
 animate()

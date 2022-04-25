@@ -29,7 +29,8 @@ const material = new THREE.ShaderMaterial({
     fragmentShader: fragmentShader,
     uniforms: {
         globeTextureUniform: {
-            value: texture.load('./images/Earth-hires.jpg')
+            //value: texture.load('./images/Earth-hires.jpg')
+            value: texture.load('./images/world.topo.bathy.200401.3x5400x2700.jpg')
         }
     }
 })

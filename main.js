@@ -63,11 +63,32 @@ const group = new THREE.Group()
 group.add(earthSphere)
 scene.add(group)
 
+//add stars in the background
+const starGeometry = new THREE.BufferGeometry()
+const starMaterial = new THREE.PointsMaterial({
+    color: 0xffffff
+})
+const starVertices = []
+//produce 10000 stars randomly on screen
+for(let i=0; i<10000; i++)
+{
+    const x = (Math.random() - 0.5)*2000
+    const y = (Math.random() - 0.5)*2000
+    const z = -Math.random() * 2000
+    starVertices.push(x, y, z)
+}
+console.log(starVertices);
+//second parameter is 3 because for a star, we have an x, an y and a z coordinate which altogether make a group for that star
+const starFloatBuffer = new THREE.Float32BufferAttribute(starVertices, 3);
+starGeometry.setAttribute('position', starFloatBuffer);
+const stars = new THREE.Points(starGeometry, starMaterial)
+scene.add(stars)
+
+//mouse and keyboard interaction
 const mouse = {
     x: 0,
     y: 0
 }
-
 var keyPressedCounter = 0;
 addEventListener('keypress', (event) => {
     if(event.key === 'r')
@@ -75,7 +96,6 @@ addEventListener('keypress', (event) => {
         keyPressedCounter = keyPressedCounter + 1;
     }
 })
-
 addEventListener('mousemove', () => {
     if(keyPressedCounter %2 == 1)
     {

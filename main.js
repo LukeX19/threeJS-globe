@@ -1,4 +1,5 @@
 import * as THREE from 'https://unpkg.com/three@0.139.2/build/three.module.js';
+import gsap from 'gsap'
 
 import vertexShader from './shaders/vertex.glsl'
 import fragmentShader from './shaders/fragment.glsl'
@@ -57,26 +58,44 @@ atmosphere.scale.set(1.2, 1.2, 1.2)
 scene.add(atmosphere)
 
 //put the earth sphere into a group in order to rotate it based on mouse movement
+//without altering the background 0.001 y rotation
 const group = new THREE.Group()
 group.add(earthSphere)
 scene.add(group)
 
 const mouse = {
-    x: undefined,
-    y: undefined
+    x: 0,
+    y: 0
 }
 
+var keyPressedCounter = 0;
+addEventListener('keypress', (event) => {
+    if(event.key === 'r')
+    {
+        keyPressedCounter = keyPressedCounter + 1;
+    }
+})
+
 addEventListener('mousemove', () => {
-    mouse.x = (event.clientX / innerWidth)*2 - 1
-    mouse.y = (event.clientY / innerHeight)*2 + 1
+    if(keyPressedCounter %2 == 1)
+    {
+        mouse.x = (event.clientX / innerWidth)*2 - 1
+        //mouse.y = (event.clientY / innerHeight)*2 + 1
+        mouse.y = (event.clientY / innerHeight)*2
+    }
 })
 
 function animate()
 {
     requestAnimationFrame(animate)
     renderer.render(scene, camera)
-    earthSphere.rotation.y = earthSphere.rotation.y + 0.001
-    //decrease the mouse rotation value
-    group.rotation.y = mouse.x * 0.5
+    earthSphere.rotation.y = earthSphere.rotation.y + 0.002
+    gsap.to(group.rotation, {
+        //decrease the mouse rotation value by 50%
+        x: mouse.y * 0.3,
+        y: mouse.x * 0.5,
+        //increase duration of interpolation by 2 seconds for smoother rotation effect
+        duration: 2
+    })
 }
 animate()

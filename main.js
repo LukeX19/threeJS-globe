@@ -38,7 +38,7 @@ const earthMaterial = new THREE.ShaderMaterial({
     }
 })
 const earthSphere = new THREE.Mesh(earthGeometry, earthMaterial)
-scene.add(earthSphere)
+//scene.add(earthSphere)
 /*in order to see the sphere, camera must be moved back
 otherwise, the camera will be placed inside the sphere
 to do this, z axis value has to be greater than geometry value*/
@@ -56,11 +56,27 @@ const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial)
 atmosphere.scale.set(1.2, 1.2, 1.2)
 scene.add(atmosphere)
 
+//put the earth sphere into a group in order to rotate it based on mouse movement
+const group = new THREE.Group()
+group.add(earthSphere)
+scene.add(group)
+
+const mouse = {
+    x: undefined,
+    y: undefined
+}
+
+addEventListener('mousemove', () => {
+    mouse.x = (event.clientX / innerWidth)*2 - 1
+    mouse.y = (event.clientY / innerHeight)*2 + 1
+})
 
 function animate()
 {
     requestAnimationFrame(animate)
     renderer.render(scene, camera)
     earthSphere.rotation.y = earthSphere.rotation.y + 0.001
+    //decrease the mouse rotation value
+    group.rotation.y = mouse.x * 0.5
 }
 animate()

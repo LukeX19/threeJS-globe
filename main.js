@@ -1,4 +1,4 @@
-import * as THREE from 'https://unpkg.com/three@0.139.2/build/three.module.js';
+import * as THREE from 'https://unpkg.com/three@0.139.2/build/three.module.js'
 import gsap from 'gsap'
 
 import vertexShader from './shaders/vertex.glsl'
@@ -6,22 +6,24 @@ import fragmentShader from './shaders/fragment.glsl'
 import atmosphereVertexShader from './shaders/atmosphere_vertex.glsl'
 import atmosphereFragmentShader from './shaders/atmosphere_fragment.glsl'
 
+const canvasContainer = document.querySelector('#canvasContainer')
 const scene = new THREE.Scene()
-const camera = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 0.1, 1000)
+const camera = new THREE.PerspectiveCamera(75, canvasContainer.offsetWidth / canvasContainer.offsetHeight, 0.1, 1000)
 //applied antialiasing for sharp edges
 const renderer = new THREE.WebGLRenderer({
-    antialias: true
+    antialias: true,
+    canvas: document.querySelector('canvas')
 })
 
 //just for testing
-console.log(scene)
+/*console.log(scene)
 console.log(camera)
-console.log(renderer)
+console.log(renderer)*/
 
-//render the whole page
-renderer.setSize(innerWidth, innerHeight)
+//render half page
+renderer.setSize(canvasContainer.offsetWidth, canvasContainer.offsetHeight)
 renderer.setPixelRatio(window.devicePixelRatio)   //render object at the device native's resolution
-document.body.appendChild(renderer.domElement)
+//document.body.appendChild(renderer.domElement)
 
 //create the sphere object
 const earthGeometry = new THREE.SphereGeometry(5, 50, 50)

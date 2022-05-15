@@ -10,7 +10,7 @@ void main()
     //uv coordinates are used to map 2D images onto 3D objects
     //gl_FragColor = texture2D(globeTextureUniform, vertexUV);
 
-    float intensity = pow(0.6 - dot(vertexNormal, vec3(0.0, 0.0, 1.0)), 2.0);
+    float intensity = pow(0.7 - dot(vertexNormal, vec3(0.0, 0.0, 1.0)), 2.0);
 
     gl_FragColor = vec4(0.3, 0.6, 1.0, 1.0) * intensity;
 }

@@ -4,15 +4,49 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>ThreeJS Globe</title>
+    <link href="tailwind.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,600&family=Lato&display=swap" rel="stylesheet">
     <style>
       body{
         margin: 0;
+        -webkit-font-smoothing: antialiased;
+      }
+      .font-exo{
+        font-family: 'Exo 2', sans-serif;
+      }
+      .font-lato{
+        font-family: 'Lato', sans-serif;
+      }
+      a:hover{
+        background-color: rgba(59,130,246,0.5);
       }
     </style>
   </head>
   <body>
-    <div id="app"></div>
+    <div class="flex h-screen bg-black">
+      <div class="w-1/3 flex flex-col justify-center px-7">
+        <div style="max-width:500px;" class="mx-auto">
+          <h1 class="text-white text-4xl mb-8 font-exo">ThreeJS Globe Render</h1>
+          <p class="text-gray-400 mb-8 font-lato">
+            Press 'R' key to rotate the globe based on mouse cursor position.<br>
+            Press 'R' key second time to freeze the globe again.<br><br>
+            Secosan Catalin-Luca, Anul III, CTI Romana<br>
+            Fac. de Automatica si Calculatoare<br>
+            Universitatea Politehnica Timisoara
+          </p>
+          <div>
+            <a href="https://github.com/LukeX19/threeJS-globe.git" class="text-white bg-blue-500 inline-block px-5 py-3 rounded-full font-lato">GitHub Link</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-2/3" id="canvasContainer">
+        <canvas></canvas>
+      </div>
+    </div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>

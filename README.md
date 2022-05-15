@@ -15,3 +15,9 @@ WebGL for GLSL programming using three.js: https://threejs.org/docs/index.html?q
 Texture2D shader documentation: https://thebookofshaders.com/glossary/?search=texture2D
 
 Dot function usage: https://thebookofshaders.com/glossary/?search=dot
+
+Vite framework: https://vitejs.dev/
+
+Tailwind CSS framework: https://tailwindcss.com/
+
+Google Fonts: https://fonts.google.com/
